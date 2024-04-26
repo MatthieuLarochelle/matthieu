@@ -1,3 +1,7 @@
+<!--Author: Matthieu Larochelle-->
+<!--Project Started: 2024-04-25-->
+<!--Project Ended: 2024-04-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,5 +10,50 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class = "bg">
+        <div class = "taskbar"></div>
+        
+        <div class = "start">
+            <div class = "startText">
+                <em>start</em>
+            </div>
+        </div>
+
+        <div class = "time">
+            <div class = "timeText">
+                <p id="time">9:30PM</p>
+            </div>
+        </div>
+        
+        <div class = "logo">
+            <img src = "logo.png">
+        </div>
+
+    </div>
+
+    <script>
+        //reference: https://dev.to/atif_dev/get-real-time-date-and-time-using-javascript-5eep
+        const getCurrentTimeDate = () => {
+            //get hours and minutes of the current time
+            let current = new Date();
+            var hours = current.getHours();
+            var minutes = current.getMinutes();
+            
+            //format hours, minutes and AM/PM correctly based of data
+            var AMPM = (hours >= 12 && hours < 24) ? 'PM' : 'AM';
+            var hours = (hours%12 === 0) ? 12 : hours%12;
+            var minutes = minutes < 10 ? '0' + minutes: minutes; 
+            var currentTime = hours + ':' + minutes + ' ' + AMPM;
+               
+            //set identified HTML element to current time
+            document.getElementById("time").innerHTML = currentTime;
+
+            //make a call after 0.5 seconds
+            setTimeout(getCurrentTimeDate,500);
+        }
+        getCurrentTimeDate();
+        
+    </script>
+    
 </body>
 </html>
